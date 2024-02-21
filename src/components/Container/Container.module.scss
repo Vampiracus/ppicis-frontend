@@ -1,0 +1,14 @@
+@import './../../colors.scss';
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 95vh;
+
+    &__content {
+        padding: 16px;
+        background-color: $background-dark;
+        border-radius: 16px;
+    }
+}

@@ -1,0 +1,18 @@
+@import 'colors.scss';
+
+html {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: linear-gradient(0.375turn, $background-light, $background-dark);
+    min-width: 100vw;
+    min-height: 100vh;
+}
+
+body {
+    margin: 0;
+}
+
+#root {
+    color: $text;
+}
