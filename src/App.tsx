@@ -1,12 +1,19 @@
-import Container from './components/Container/Container'
+import { useEffect } from 'react'
+import { getMe } from './api/user'
+import { useSelectUser } from './redux/slices/selectors'
+import AuthPage from './pages/AuthPage/AuthPage'
 
 function App() {
 
-  return (
-    <Container>
-      123
-    </ Container>
-  )
+  useEffect(() => {
+    getMe()
+  })
+
+  const user = useSelectUser()
+
+  if (!user) {
+    return <AuthPage/>
+  }
 }
 
 export default App

@@ -1,0 +1,38 @@
+@import './../../colors.scss';
+
+.form {
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    min-width: 250px;
+    gap: 2px;
+
+    &__input {
+        border: none;
+        border-bottom: 1px solid;
+
+        padding: 3px 0;
+        background: none;
+        color: inherit;
+        font-size: 1rem;
+        outline: 0;
+        
+        &__label {
+            text-align: left;
+            font-size: 0.75rem;
+        }
+
+        &__outer {
+            display: flex;
+            flex-direction: column;
+            padding: 10px 0;
+            gap: 3px;
+        }
+
+        &::placeholder {
+            color: $text-duller;
+        }
+    }
+}

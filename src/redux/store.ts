@@ -1,16 +1,17 @@
-import { configureStore, ConfigureStoreOptions } from '@reduxjs/toolkit'
-import userSlice from './slices/userSlice'
+import { Reducer, configureStore } from '@reduxjs/toolkit'
+import userSlice, { IUserState } from './slices/userSlice'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
-export const createStore = (
-  options?: ConfigureStoreOptions['preloadedState'] | undefined
-) =>
-  configureStore({
-    reducer: {
-        userSlice,
-    },
-    ...options,
-  })
+export type IReducer = {
+  user: Reducer<IUserState>
+}
+
+const reducer: IReducer = {
+  user: userSlice,
+}
+
+export const createStore = () =>
+  configureStore({ reducer })
 
 export const store = createStore()
 export type AppDispatch = typeof store.dispatch
