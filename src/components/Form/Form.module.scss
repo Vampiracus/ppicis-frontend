@@ -1,4 +1,4 @@
-@import './../../colors.scss';
+@import '/src/colors.scss';
 
 .form {
     display: flex;
@@ -7,11 +7,12 @@
     justify-content: center;
     flex-direction: column;
     min-width: 250px;
-    gap: 2px;
+    gap: 5px;
 
     &__input {
         border: none;
         border-bottom: 1px solid;
+        margin: 0;
 
         padding: 3px 0;
         background: none;
@@ -27,12 +28,17 @@
         &__outer {
             display: flex;
             flex-direction: column;
-            padding: 10px 0;
+            padding: 5px 0;
             gap: 3px;
         }
 
         &::placeholder {
             color: $text-duller;
+        }
+
+        &__outer_checkbox {
+            display: flex;
+            gap: 10px;
         }
     }
 }

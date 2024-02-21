@@ -1,0 +1,8 @@
+@import '/src/colors.scss';
+
+.button {
+    height: 2.5rem;
+    border-radius: 20px;
+    border: none;
+    background-color: $info;
+}

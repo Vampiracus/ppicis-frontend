@@ -1,0 +1,21 @@
+@import '/src/colors.scss';
+
+.authform {
+    display: flex;
+    
+    & > :nth-child(2) {
+        margin: 0 0 40px 0;
+    }
+
+    & > div {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+.downLink {
+    font-size: 0.75rem;
+    text-decoration: underline;
+    color: $text-duller;
+}

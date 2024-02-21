@@ -19,3 +19,9 @@ body {
 #root {
     color: $text;
 }
+
+a, button {
+    cursor: pointer;
+    color: inherit;
+    font-size: inherit;
+}

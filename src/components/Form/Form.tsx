@@ -1,13 +1,20 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { FormEventHandler, PropsWithChildren } from 'react'
+import React, { PropsWithChildren } from 'react'
 import styles from './Form.module.scss'
 
 type FormProps = {
-    onSubmit?: FormEventHandler<HTMLFormElement>
+    onSubmit?: (formEntries: Record<string, string | File>) => void
+    class?: string
 }
 
 type InputProps = {
     placeholder?: string
+    name: string
+    showName?: string
+    type?: string
+}
+
+type CheckInputProps = {
     name: string
     showName?: string
 }
@@ -16,13 +23,25 @@ type InputProps = {
 const Form: {
     Form: React.FC<PropsWithChildren<FormProps>> 
     InputField: React.FC<InputProps>
+    CheckInput: React.FC<CheckInputProps>
 } = {}
 
 
-Form.Form = ({ children, onSubmit }) => {
+Form.Form = (props) => {
+    const onSubmit: React.FormEventHandler<HTMLFormElement> = e => {
+        e.preventDefault()
+        if (!props.onSubmit) return
+        const entries: Record<string, string | File> = {}
+        const fd = new FormData(e.target as HTMLFormElement)
+        for(const [key, val] of fd.entries()) {
+            entries[key] = val
+        }
+        props.onSubmit(entries)
+    }
+
     return (
-        <form className={styles.form} onSubmit={onSubmit}>
-            { children }
+        <form className={styles.form + (props.class ? ' ' + props.class : '')} onSubmit={onSubmit}>
+            { props.children }
         </form>
     )
 }
@@ -38,7 +57,24 @@ Form.InputField = (props) => {
                 className={styles.form__input}
                 placeholder={props.placeholder}
                 name={props.name}
+                type={props.type}
+                title={props.showName}
             />
+        </div>
+    )
+}
+
+Form.CheckInput = (props) => {
+    return (
+        <div className={styles.form__input__outer_checkbox}>
+            <input
+                id={'form-' + props.name}
+                className={styles.form__input}
+                name={props.name}
+                type={'checkbox'}
+                title={props.showName}
+            />
+            <span>{props.showName}</span>
         </div>
     )
 }

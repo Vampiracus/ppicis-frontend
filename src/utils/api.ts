@@ -1,9 +1,23 @@
-type fetchArgs = [input: RequestInfo | URL, init?: RequestInit | undefined]
+type ConfigType = {
+    noJSONBody?: true
+}
 
-export function configuredFetch<returnType>(...args: fetchArgs) {
-    return fetch(args[0], {
-        credentials: "include",
-        ...args[1]
-    })
-        .then(res => res.json()) as Promise<returnType>
+export function configuredFetch<ReturnType = object>(
+    input: RequestInfo | URL,
+    config: ConfigType & RequestInit = {},
+    body?: Record<string, any>,
+    headers: Record<string, string> = {}
+) {
+    const init = {
+        credentials: 'include' as const,
+        
+        ...config,
+    }
+    if (!config.noJSONBody && config.method !== 'GET') {
+        headers['content-type'] = 'application/json'
+        init.body = JSON.stringify(body)
+    }
+    init.headers = new Headers(headers)
+    return fetch(input, init)
+        .then(res => res.json()) as Promise<{ message: string } & ReturnType>
 }
