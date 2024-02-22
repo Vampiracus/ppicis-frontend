@@ -4,7 +4,7 @@ import { authURL, userMeURL } from './url'
 export type IAuth = { login: string, password: string, rememberme?: 'on'}
 
 export function getMe() {
-    return configuredFetch<TUser>(userMeURL)
+    return configuredFetch<{ user?: TUser }>(userMeURL)
 }
 
 export function authenticate(authData: IAuth) {
