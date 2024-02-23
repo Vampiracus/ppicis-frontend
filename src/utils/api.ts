@@ -1,5 +1,8 @@
+import { createNotification } from './notification'
+
 type ConfigType = {
     noJSONBody?: true
+    noNotification?: true
 }
 
 export function configuredFetch<ReturnType = object>(
@@ -19,5 +22,11 @@ export function configuredFetch<ReturnType = object>(
     }
     init.headers = new Headers(headers)
     return fetch(input, init)
-        .then(res => res.json()) as Promise<{ message: string } & ReturnType>
+        .then(res => res.json())
+        .then(json => {
+            if (!config.noNotification) {
+                createNotification(json.message)
+            }
+            return json
+        }) as Promise<{ message: string } & ReturnType>
 }

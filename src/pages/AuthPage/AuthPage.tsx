@@ -3,6 +3,8 @@ import Form from 'components/Form/Form'
 import styles from './AuthPage.module.scss'
 import Button from 'components/Button/Button'
 import { IAuth, authenticate } from '../../api/user'
+import { Link } from 'react-router-dom'
+import { signupURL } from 'url'
 
 const AuthPage = () => {
 
@@ -21,12 +23,13 @@ const AuthPage = () => {
                     <Form.CheckInput name='rememberme' showName='Запомнить меня'/>
                 </div>
                 <div>
-                    <a href='/register' style={{textDecoration: 'underline'}}>Регистрация</a>
-                    <Button text='Войти'/>
-                    <a className={styles.downLink} href='https://icis.mephi.ru/'>
-                        Сайт проектной практики <br/>
-                        ИИКС НИЯУ МИФИ
-                    </a>
+                    <Link to={signupURL} style={{textDecoration: 'underline'}}>Регистрация</Link>
+                    <Button text='Войти!'/>
+                    <span className={styles.downLink}> Сайт проектной практики <br/>
+                        <a href='https://icis.mephi.ru/'>
+                            ИИКС НИЯУ МИФИ
+                        </a>
+                    </span>
                 </div>
             </Form.Form>
         </Container>

@@ -20,7 +20,9 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "components/*": ["./src/components/*"]
+      "components/*": ["./src/components/*"],
+      "api/*": ["./src/api/*"],
+      "url": ["./src/url"]
     }
   },
   "include": ["src"],

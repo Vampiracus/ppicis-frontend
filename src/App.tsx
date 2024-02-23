@@ -4,6 +4,9 @@ import { useSelectUser } from './redux/slices/selectors'
 import AuthPage from './pages/AuthPage/AuthPage'
 import { setUserData } from './redux/slices/userSlice'
 import { useDispatch } from 'react-redux'
+import { Route, Routes } from 'react-router'
+import { signupURL } from './url'
+import RegPage from './pages/RegPage/RegPage'
 
 function App() {
 
@@ -21,10 +24,14 @@ function App() {
   }, [ dispatch ])
 
   const user = useSelectUser()
-  console.log('user', user)
 
   if (!user) {
-    return <AuthPage/>
+    return (
+      <Routes>
+        <Route path={signupURL} element={<RegPage/>}/>
+        <Route path='*' element={<AuthPage/>}/>
+      </Routes>
+    )
   }
 
   return <>123</>

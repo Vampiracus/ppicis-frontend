@@ -1,0 +1,12 @@
+@import '/src/colors.scss';
+
+.regform {
+    display: flex;
+    min-width: 330px;
+}
+
+.downLink {
+    font-size: 0.75rem;
+    color: $text-duller;
+    margin: 10px 0;
+}

@@ -40,5 +40,17 @@
             display: flex;
             gap: 10px;
         }
+
+        &_select {
+            text-align:start;
+
+            & > option {
+                color:black;
+
+                &:disabled {
+                    color: grey;
+                }
+            }
+        }
     }
 }

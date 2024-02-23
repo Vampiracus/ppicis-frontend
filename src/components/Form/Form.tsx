@@ -19,11 +19,19 @@ type CheckInputProps = {
     showName?: string
 }
 
+type SelectFieldProps = {
+    placeholder?: string
+    name: string
+    showName?: string
+    options: string[]
+}
+
 // @ts-expect-error they are defined below
 const Form: {
     Form: React.FC<PropsWithChildren<FormProps>> 
     InputField: React.FC<InputProps>
     CheckInput: React.FC<CheckInputProps>
+    SelectField: React.FC<SelectFieldProps>
 } = {}
 
 
@@ -75,6 +83,29 @@ Form.CheckInput = (props) => {
                 title={props.showName}
             />
             <span>{props.showName}</span>
+        </div>
+    )
+}
+
+Form.SelectField = (props) => {
+    return (
+        <div className={styles.form__input__outer}>
+            <label htmlFor={'form-' + props.name} className={styles.form__input__label}>
+                {props.showName}
+            </label>
+            <select
+                id={'form-' + props.name}
+                className={styles.form__input + ' ' + styles.form__input_select}
+                name={props.name}
+                title={props.showName}
+            >
+                <option disabled>{props.placeholder}</option>
+                {props.options.map(option => (
+                    <option key={option}>
+                        {option}
+                    </option>
+                ))}
+            </select>
         </div>
     )
 }
