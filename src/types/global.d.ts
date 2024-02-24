@@ -23,4 +23,17 @@ declare global {
         end: string
         name: string
     }
+
+    type TTheme = {
+        id: number
+        name: string
+        description: string
+        slide_id?: number | null
+        status: string
+        difficulty: number | null
+        mentor_id: number
+        season_id: number
+        createdAt: string
+        updatedAt: string
+    }
 }

@@ -5,4 +5,12 @@
     border-radius: 20px;
     border: none;
     background-color: $info;
+
+    &:hover {
+        background-color: $info-hover;
+    }
+
+    &:active {
+        background-color: $info;
+    }
 }

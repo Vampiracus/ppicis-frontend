@@ -11,3 +11,6 @@ export const studentForURL = '/student'
 
 export const seasonsURL = serverURL + '/seasons'
 export const currentSeasonURL = seasonsURL + '/current'
+
+export const themesURL = serverURL + '/themes'
+export const myThemesURL = themesURL + '/my'
