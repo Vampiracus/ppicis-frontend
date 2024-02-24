@@ -12,6 +12,7 @@ type InputProps = {
     name: string
     showName?: string
     type?: string
+    notRequired?: true
 }
 
 type CheckInputProps = {
@@ -67,6 +68,7 @@ Form.InputField = (props) => {
                 name={props.name}
                 type={props.type}
                 title={props.showName}
+                required = {props.notRequired ? false : true}
             />
         </div>
     )

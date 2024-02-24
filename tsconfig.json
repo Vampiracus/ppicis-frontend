@@ -22,6 +22,7 @@
     "paths": {
       "components/*": ["./src/components/*"],
       "api/*": ["./src/api/*"],
+      "slices/*": ["./src/redux/slices/*"],
       "url": ["./src/url"]
     }
   },

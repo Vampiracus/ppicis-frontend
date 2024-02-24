@@ -2,15 +2,24 @@ import Container from 'components/Container/Container'
 import Form from 'components/Form/Form'
 import styles from './AuthPage.module.scss'
 import Button from 'components/Button/Button'
-import { IAuth, authenticate } from '../../api/user'
+import { IAuth, authenticate, getMe } from 'api/user'
 import { Link } from 'react-router-dom'
 import { signupURL } from 'url'
+import { useDispatch } from 'react-redux'
+import { setUserData } from 'slices/userSlice'
 
 const AuthPage = () => {
+    const dispatch = useDispatch()
 
-    const onSubmit = (formEntries: Record<string, string | File>) => {
+    const onSubmit = async (formEntries: Record<string, string | File>) => {
         const fe = formEntries as IAuth
-        authenticate(fe)
+        const res = await authenticate(fe)
+        if (res.status === 200) {
+            const me = await getMe()
+            if (me.user) {
+                dispatch(setUserData(me.user))
+            }
+        }
     }
 
     return (

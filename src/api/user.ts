@@ -20,7 +20,7 @@ export function getMe() {
 }
 
 export function authenticate(authData: IAuth) {
-    return configuredFetch(authURL, { method: 'POST'}, authData)
+    return configuredFetch(authURL, { method: 'POST', saveStatus: true }, authData)
 }
 
 export function register(registerData: IRegisterData) {
