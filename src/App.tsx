@@ -8,6 +8,8 @@ import { Route, Routes } from 'react-router'
 import { signupURL } from './url'
 import RegPage from './pages/RegPage/RegPage'
 import MentorPage from './pages/MentorPage/MentorPage'
+import { getCurrentSeason } from 'api/season'
+import { setSeasonData } from 'slices/seasonSlice'
 
 function App() {
 
@@ -18,6 +20,11 @@ function App() {
       const me = await getMe()
       if (me.user) {
         dispatch(setUserData(me.user))
+      }
+
+      const season = await getCurrentSeason()
+      if (season.season) {
+        dispatch(setSeasonData(season.season))
       }
     }
 

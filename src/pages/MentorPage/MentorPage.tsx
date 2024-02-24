@@ -1,9 +1,10 @@
+import Header from 'components/Header/Header'
 import React from 'react';
 
 const MentorPage = () => {
     return (
         <>
-        <header>123</header>
+        <Header />
         <main>456</main>
         </>
     );

@@ -14,4 +14,13 @@ declare global {
         organization?: string
         status: string | userStatus
     }
+
+    type TSeason = {
+        id: number
+        createdAt: string
+        updatedAt: string
+        start: string
+        end: string
+        name: string
+    }
 }

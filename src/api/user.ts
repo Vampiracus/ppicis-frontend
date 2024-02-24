@@ -1,5 +1,5 @@
 import { configuredFetch } from '../utils/api'
-import { authURL, mentorForURL, registerURL, userMeURL } from './url'
+import { authURL, logoutURL, mentorForURL, registerURL, userMeURL } from './url'
 
 export type IAuth = { login: string, password: string, rememberme?: 'on'}
 
@@ -33,4 +33,8 @@ export function register(registerData: IRegisterData) {
         registerURL + registerData.role,
         {method: 'POST'},
         { ...registerData, role: undefined })
+}
+
+export function logout() {
+    return configuredFetch(logoutURL, { method: 'POST', saveStatus: true, noNotification: true })
 }

@@ -4,6 +4,10 @@ export const userURL = serverURL + '/user'
 export const userMeURL = userURL + '/me'
 
 export const authURL = serverURL + '/auth'
+export const logoutURL = authURL + '/logout'
 export const registerURL = authURL + '/register'
 export const mentorForURL = '/mentor'
 export const studentForURL = '/student'
+
+export const seasonsURL = serverURL + '/seasons'
+export const currentSeasonURL = seasonsURL + '/current'

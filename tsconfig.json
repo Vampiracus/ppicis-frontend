@@ -23,6 +23,7 @@
       "components/*": ["./src/components/*"],
       "api/*": ["./src/api/*"],
       "slices/*": ["./src/redux/slices/*"],
+      "public/*": ["./public/*"],
       "url": ["./src/url"]
     }
   },
