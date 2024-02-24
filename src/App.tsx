@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 import { Route, Routes } from 'react-router'
 import { signupURL } from './url'
 import RegPage from './pages/RegPage/RegPage'
+import MentorPage from './pages/MentorPage/MentorPage'
 
 function App() {
 
@@ -31,6 +32,12 @@ function App() {
         <Route path={signupURL} element={<RegPage/>}/>
         <Route path='*' element={<AuthPage/>}/>
       </Routes>
+    )
+  }
+
+  if (user.role === 'Mentor') {
+    return (
+      <MentorPage />
     )
   }
 

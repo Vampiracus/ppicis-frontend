@@ -19,8 +19,8 @@ export const validatePassword: ValidationFunction = password => {
 }
 
 export const validateName: ValidationFunction = name => {
-    if (name.length === 0 || name.length > 50) {
-        return 'Не должно быть пустым или содержать более 50 символов'
+    if (name.length > 50) {
+        return 'Не должно содержать более 50 символов'
     }
     if (!(/^[A-Za-zА-Яа-яЁё -]*$/.test(name))) {
         return 'Допустимы только буквы кириллицы или латиницы, пробелы или дефисы'

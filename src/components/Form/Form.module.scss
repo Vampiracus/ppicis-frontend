@@ -23,6 +23,11 @@
         &__label {
             text-align: left;
             font-size: 0.75rem;
+
+            &_errors {
+                color: $error;
+                word-break: auto;
+            }
         }
 
         &__outer {

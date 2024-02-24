@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { PropsWithChildren } from 'react'
+import React, { PropsWithChildren, useCallback, useState } from 'react'
 import styles from './Form.module.scss'
 
 type FormProps = {
@@ -13,6 +13,7 @@ type InputProps = {
     showName?: string
     type?: string
     notRequired?: true
+    validationF?: (s: string) => string | false
 }
 
 type CheckInputProps = {
@@ -56,6 +57,14 @@ Form.Form = (props) => {
 }
 
 Form.InputField = (props) => {
+    const [error, setError] = useState<string | false>('')
+
+    const onChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(e => {
+        if (props.validationF) {
+            setError(props.validationF(e.target.value))
+        }
+    }, [])
+
     return (
         <div className={styles.form__input__outer}>
             <label htmlFor={'form-' + props.name} className={styles.form__input__label}>
@@ -69,7 +78,11 @@ Form.InputField = (props) => {
                 type={props.type}
                 title={props.showName}
                 required = {props.notRequired ? false : true}
+                onChange={onChange}
             />
+            <label htmlFor={'form-' + props.name} className={styles.form__input__label + ' ' + styles.form__input__label_errors}>
+                {error}
+            </label>
         </div>
     )
 }
