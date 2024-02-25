@@ -19,14 +19,19 @@
         color: inherit;
         font-size: 1rem;
         outline: 0;
+
+        &:has(+ :not(label:empty)) {
+            color: $error;  
+        }
         
         &__label {
             text-align: left;
             font-size: 0.75rem;
+            flex: 0;
 
             &_errors {
                 color: $error;
-                word-break: auto;
+                word-break: normal;
             }
         }
 

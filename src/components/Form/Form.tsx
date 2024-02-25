@@ -25,7 +25,7 @@ type SelectFieldProps = {
     placeholder?: string
     name: string
     showName?: string
-    options: string[]
+    options: (string | number)[]
 }
 
 // @ts-expect-error they are defined below
@@ -34,6 +34,7 @@ const Form: {
     InputField: React.FC<InputProps>
     CheckInput: React.FC<CheckInputProps>
     SelectField: React.FC<SelectFieldProps>
+    FileInput: React.FC
 } = {}
 
 
@@ -125,4 +126,10 @@ Form.SelectField = (props) => {
     )
 }
 
-export default Form;
+Form.FileInput = () => {
+    return (
+        <input type='file' name='file'/>
+    )
+}
+
+export default Form as Readonly<typeof Form>;

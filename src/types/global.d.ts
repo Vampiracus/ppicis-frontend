@@ -24,14 +24,16 @@ declare global {
         name: string
     }
 
-    type TTheme = {
-        id: number
+    type TThemeInit = {
         name: string
         description: string
+        difficulty: number | null
+    }
+
+    type TTheme = TThemeInit & {
+        id: number
         slide_id?: number | null
         status: string
-        difficulty: number | null
-        mentor_id: number
         season_id: number
         createdAt: string
         updatedAt: string

@@ -14,3 +14,6 @@ export const currentSeasonURL = seasonsURL + '/current'
 
 export const themesURL = serverURL + '/themes'
 export const myThemesURL = themesURL + '/my'
+
+export const filesURL = serverURL + '/files'
+export const themeFilesBaseURL = filesURL + '/theme/'

@@ -17,7 +17,7 @@ const ThemesList = () => {
 
     return (
         <div className={styles.themesList}>
-            { themes.map(theme => <ThemeItem theme={theme}></ThemeItem>)}
+            { themes.map(theme => <ThemeItem key={theme.id} theme={theme}></ThemeItem>)}
         </div>
     );
 };
