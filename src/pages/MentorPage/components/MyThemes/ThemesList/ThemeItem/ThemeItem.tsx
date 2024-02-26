@@ -7,10 +7,12 @@ type Props = {
 }
 
 const ThemeItem: React.FC<Props> = ({ theme }) => {
+    const [showInfo, setShowInfo] = React.useState(false);
+
     return (
         <>
-        <ThemeInfoForm />
-        <a className={styles.themeItem}>
+        <ThemeInfoForm shown={showInfo} setShown={setShowInfo}/>
+        <a className={styles.themeItem} onClick={() => setShowInfo(true)}>
             «{ theme.name }»
         </a>
         </>

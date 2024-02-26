@@ -2,9 +2,14 @@
     position: fixed;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.8);
-    
-    & > div > div {
-        overflow-y: scroll;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__content {
+        margin: 0 auto;
+        overflow: auto;
 
         &::-webkit-scrollbar {
             display: none;

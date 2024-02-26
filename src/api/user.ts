@@ -16,7 +16,7 @@ export type IRegisterData = {
 }
 
 export function getMe() {
-    return configuredFetch<{ user?: TUser }>(userMeURL, { noNotification: true })
+    return configuredFetch<{ user?: TUser }>(userMeURL, { notification: { none: true } })
 }
 
 export function authenticate(authData: IAuth) {
@@ -36,5 +36,5 @@ export function register(registerData: IRegisterData) {
 }
 
 export function logout() {
-    return configuredFetch(logoutURL, { method: 'POST', saveStatus: true, noNotification: true })
+    return configuredFetch(logoutURL, { method: 'POST', saveStatus: true, notification: { none: true } })
 }

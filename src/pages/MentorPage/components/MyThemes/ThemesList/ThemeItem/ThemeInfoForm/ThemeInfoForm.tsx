@@ -8,33 +8,47 @@ import { validateThemeDesctiption, validateThemeName } from '../../../../../../.
 import { postThemeFile } from 'api/files'
 
 type Props = {
-    isChangeing?: true
+    shown: boolean
+    setShown: (x: boolean) => void
+    theme?: TTheme
 }
 
 const ThemeInfoForm: React.FC<Props> = (props) => {
-    const onSubmit: ((formEntries: Record<string, string | File>) => void) = async fe => {
+    const [ isChangeing, setIsChangeing ] = React.useState(!!props.theme)
+    const [ theme, setTheme ] = React.useState(props.theme || null)
+
+    const onSubmitCreate: ((formEntries: Record<string, string | File>) => void) = async fe => {
         // @ts-expect-error file is deleted. All properties from TThemeInit are present
         const res = await postTheme({ ...fe, file: undefined })
         
         if (res.theme) {
-            // ДОБАВИТЬ ПРОВЕРКУ НА ТО, ЧТО ФАЙЛ УСПЕШНО ЗАГРУЗИЛСЯ!!!
+            setIsChangeing(true)
+            setTheme(res.theme)
             const fd = new FormData()
             fd.append('file', fe.file)
             postThemeFile(fd, res.theme.id)
         }
     }
 
+    const onSubmitChange: ((formEntries: Record<string, string | File>) => void) = async fe => {
+        console.log(fe)
+    }
+
     return (
-        <Modal>
-            <Form.Form class={styles.themeForm} onSubmit={onSubmit}>
-                <h2> {props.isChangeing ? 'Редактирование темы' : 'Добавление темы'} </h2>
-                <Form.InputField placeholder='Введите название темы...' name='name' showName='Название' validationF={validateThemeName}/>
+        <Modal shown={props.shown} setShown={props.setShown}>
+            <Form.Form class={styles.themeForm} onSubmit={isChangeing ? onSubmitChange : onSubmitCreate}>
+                <h2> {isChangeing ? 'Редактирование темы' : 'Добавление темы'} </h2>
+                <Form.InputField
+                    placeholder={theme ? theme.name : 'Введите название темы...'}
+                    name='name'
+                    showName='Название'
+                    validationF={validateThemeName}/>
                 <Form.InputField placeholder='Введите описание темы...' name='description' showName='Описание' validationF={validateThemeDesctiption}/>
                 <Form.SelectField placeholder='Выберите сложность...' name='difficulty' showName='Сложность' options={new Array(10).fill('1').map((_, i) => i + 1)}/>
                 <Form.FileInput/>
                 <br/>
                 <br/>
-                <Button text={props.isChangeing ? 'Сохранить!' : 'Создать!'}/>
+                <Button text={isChangeing ? 'Сохранить!' : 'Создать!'}/>
             </Form.Form>
         </Modal>
     );

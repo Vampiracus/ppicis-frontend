@@ -20,7 +20,7 @@
         font-size: 1rem;
         outline: 0;
 
-        &:has(+ :not(label:empty)) {
+        &:has(+ label:not(:empty)) {
             color: $error;  
         }
         
