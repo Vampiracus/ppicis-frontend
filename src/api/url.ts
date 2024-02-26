@@ -17,3 +17,7 @@ export const myThemesURL = themesURL + '/my'
 
 export const filesURL = serverURL + '/files'
 export const themeFilesBaseURL = filesURL + '/theme/'
+
+export function fileURL(id: number) {
+    return filesURL + '/' + id
+}

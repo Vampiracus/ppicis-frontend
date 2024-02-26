@@ -6,6 +6,7 @@ import Button from 'components/Button/Button'
 import { changeTheme, postTheme } from 'api/themes'
 import { validateThemeDesctiption, validateThemeName } from '../../../../../../../utils/validation'
 import { postThemeFile } from 'api/files'
+import { fileURL } from 'api/url'
 
 type Props = {
     shown: boolean
@@ -72,6 +73,8 @@ const ThemeInfoForm: React.FC<Props> = (props) => {
                     name='difficulty'
                     showName='Сложность'
                     options={options}/>
+                { props.theme?.slide_id ? <a className={styles.fileLink} href={fileURL(props.theme.slide_id)}>Загруженный файл</a> : ''}
+                <br/>
                 <Form.FileInput/>
                 <br/>
                 <br/>

@@ -140,7 +140,10 @@ Form.SelectField = (props) => {
 
 Form.FileInput = () => {
     return (
-        <input type='file' name='file'/>
+        <div className={styles.form__input__outer}>
+            <label htmlFor={'form-file'} className={styles.form__input__label}> Загрузить файл </label>
+            <input type='file' name='file'/>
+        </div>
     )
 }
 

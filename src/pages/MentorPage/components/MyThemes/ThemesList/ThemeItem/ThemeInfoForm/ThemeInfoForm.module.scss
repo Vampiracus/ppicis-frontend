@@ -1,3 +1,10 @@
+@import '/src/colors.scss';
+
 .themeForm {
     width: 350px;
+}
+
+.fileLink {
+    color: $info-secondary;
+    text-align: left;
 }
