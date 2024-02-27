@@ -3,12 +3,11 @@ import styles from './Header.module.scss'
 import { Link } from 'react-router-dom'
 import LeaveButton from './LeaveButton/LeaveButton'
 import { useSelectSeason, useSelectUser } from 'slices/selectors'
+import { shortName } from '../../utils/other'
 
 const Header: React.FC<PropsWithChildren> = ({ children }) => {
     const user = useSelectUser()
     const season = useSelectSeason()
-
-    const shortName = user?.surname + ' ' + user?.first_name[0] + '. ' + (user?.second_name ? user.second_name[0] + '.' : '')
 
     return (
         <header className={styles.header}> 
@@ -18,7 +17,7 @@ const Header: React.FC<PropsWithChildren> = ({ children }) => {
             <div className={styles.header__controls}>
                 <div className={styles.header__controls__info}>
                     <span className={styles.header__controls__info_small}>{season?.name}</span>
-                    <span>{shortName}</span>
+                    <span>{shortName(user!)}</span>
                     <span className={styles.header__controls__info_small}>{user?.login}</span>
                 </div>
                 <LeaveButton></LeaveButton>

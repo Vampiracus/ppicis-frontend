@@ -38,4 +38,32 @@ declare global {
         createdAt: string
         updatedAt: string
     }
+
+    type TTeamTheme = TThemeInit & {
+        id: number
+        slide_id?: number | null
+        createdAt: string
+    }
+
+    type TUserInfo = {
+        id: number
+        surname: string
+        first_name: string
+        second_name: string | null
+        group: string | null
+        social: string | null
+    }
+
+    type TTeamInfo = {
+        id: number
+        season_id: number
+        mentor_id: number
+        status: string
+        createdAt: string
+        students: Array<{
+            record_id: number
+            student: TUserInfo
+        }>
+        theme: TTeamTheme
+    }
 }

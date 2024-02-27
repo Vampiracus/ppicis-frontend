@@ -1,6 +1,6 @@
 import Header from 'components/Header/Header'
-import React from 'react';
 import MyThemes from './components/MyThemes/MyThemes'
+import MyTeams from './components/MyTeams/MyTeams'
 
 const MentorPage = () => {
     return (
@@ -8,7 +8,7 @@ const MentorPage = () => {
         <Header />
         <main>
             Календарь
-            Мои команды
+            <MyTeams />
             <MyThemes />
         </main>
         </>

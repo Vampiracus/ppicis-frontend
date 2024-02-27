@@ -15,7 +15,7 @@ const LeaveButton = () => {
     }
 
     return (
-        <button className={styles.logout} onClick={onClick}/>
+        <button className={styles.logout} onClick={onClick} title='Выйти'/>
     );
 };
 
