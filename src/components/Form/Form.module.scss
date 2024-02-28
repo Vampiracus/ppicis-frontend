@@ -62,5 +62,9 @@
                 }
             }
         }
+
+        &[type=date] {
+            color-scheme: dark;
+        }
     }
 }

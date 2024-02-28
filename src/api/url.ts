@@ -24,3 +24,6 @@ export function fileURL(id: number) {
 export const teamsURL = serverURL + '/teams'
 export const teamInfoBaseURL = teamsURL + '/info/'
 export const myTeamsURL = teamsURL + '/my'
+
+export const todosURL = serverURL + '/todos'
+export const teamTodosBaseURL = todosURL + '/team/'

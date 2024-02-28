@@ -66,4 +66,18 @@ declare global {
         }>
         theme: TTeamTheme
     }
+
+    type TTaskInit = {
+        team_id: number
+        name: string
+        description: string
+        deadline: string
+    }
+
+    type TTask = TTaskInit & {
+        id: number
+        isDone: boolean
+        updatedAt: string
+        createdAt: string
+      }
 }

@@ -1,0 +1,24 @@
+.tasks {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+}
+
+.team {
+    display: flex;
+    max-width: calc(max(32vw, 320px, 100%));
+
+    & > span {
+        flex: 4;
+        text-align: right;
+    }
+
+    &__students {
+        display: flex;
+        flex-direction: column;
+        flex: 3;
+        text-align: left;
+    }
+}

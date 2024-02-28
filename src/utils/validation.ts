@@ -76,3 +76,37 @@ export const validateThemeDesctiption: ValidationFunction = description => {
     }
     return false
 }
+
+
+export const validateTodoName: ValidationFunction = name => {
+    if (name.length < 3 || name.length > 100) {
+        return 'Название задачи не должно содержать меньше 3 или больше 100 символов'
+    }
+    if (!(/^[A-Za-zА-Яа-яЁё0-9 \-\'\"\.\,\:\;]*$/.test(name!))) {
+        // eslint-disable-next-line max-len
+        return 'Название задачи может содержать только цифры, буквы кириллицы или латиницы или знаки препинания'
+    }
+    return false
+}
+
+export const validateTodoDescription: ValidationFunction = desctiption => {
+    if (desctiption.length < 3 || desctiption.length > 500) {
+        return 'Описание задачи не должно содержать меньше 3 или больше 500 символов'
+    }
+    if (!(/^[A-Za-zА-Яа-яЁё0-9 \-\'\"\.\,\:\;]*$/.test(desctiption!))) {
+        // eslint-disable-next-line max-len
+        return 'Описание задачи может содержать только цифры, буквы кириллицы или латиницы или знаки препинания'
+    }
+    return false
+}
+
+export const validateTodoDeadline: ValidationFunction = deadline => {
+    const d = Number( new Date(deadline)), sevenMonth = 1000 * 60 * 60 * 24 * 30 * 7
+    if (!(d < Date.now() + sevenMonth)) {
+        return 'Слишком большая дата'
+    }
+    if (!(d > Date.now() - sevenMonth)) {
+        return 'Слишком старая дата'
+    }
+    return false
+}
