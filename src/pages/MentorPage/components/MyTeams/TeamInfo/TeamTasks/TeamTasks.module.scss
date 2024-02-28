@@ -3,7 +3,8 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 10px;
+    gap: 20px;
+    max-width: calc(max(32vw, 320px));
 }
 
 .team {

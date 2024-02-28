@@ -3,7 +3,7 @@ import Modal from 'components/Modal/Modal'
 import styles from './TaskForm.module.scss'
 import React from 'react';
 import Button from 'components/Button/Button'
-import { postTask } from 'api/tasks'
+import { changeTask, postTask } from 'api/tasks'
 import { validateTodoDeadline, validateTodoDescription, validateTodoName } from '../../../../../../../utils/validation'
 
 type Props = {
@@ -18,35 +18,38 @@ type Props = {
 const TaskForm: React.FC<Props> = (props) => {
     const isChanging = !!props.task
 
-    const onSubmitCreate: ((formEntries: Record<string, string | File>) => void) = async fe => {
-        // @ts-expect-error file is deleted. All properties from TThemeInit are present
+    const onSubmitCreate: ((formEntries: Record<string, string | File | null>) => void) = async fe => {
+        if (fe.deadline === '') {
+            fe.deadline = null
+        }
+        // @ts-expect-error file is deleted. All properties from TTaskInit are present
         const res = await postTask({ ...fe, team_id: props.team_id })
         
-        if (res.todos) {
+        if (res.todo) {
             props.setCreated(props.created! + 1)
             props.setShown(false)
         }
     }
 
-    const onSubmitChange: ((formEntries: Record<string, string | File>) => void) = async fe => {
-        console.log(fe)
+    const onSubmitChange: ((formEntries: Record<string, string | File | null | boolean>) => void) = async fe => {
+        if (fe.deadline === '') {
+            fe.deadline = null
+        }
+        fe.isDone = !!fe.isDone
         
-        // // @ts-expect-error file is deleted. All properties from TThemeInit are present
-        // const res = await changeTheme({ ...fe, file: undefined, id: props.theme!.id })
+        // @ts-expect-error file is deleted. All properties from TTaskInit are present
+        const res = await changeTask({ ...fe, team_id: props.team_id, id: props.task?.id })
         
-        // if (res.status === 200) {
-        //     props.setCreated(props.created! + 1)
-        //     props.setShown(false)
-        //     const fd = new FormData()
-        //     fd.append('file', fe.file)
-        //     postThemeFile(fd, props.theme!.id)
-        // }
+        if (res.status === 200) {
+            props.setCreated(props.created! + 1)
+            props.setShown(false)
+        }
     }
 
     return (
         <Modal shown={props.shown} setShown={props.setShown}>
             <Form.Form class={styles.taskForm} onSubmit={isChanging ? onSubmitChange : onSubmitCreate}>
-                <h2> {isChanging ? 'Редактирование темы' : 'Добавление темы'} </h2>
+                <h2> {isChanging ? 'Редактирование задачи' : 'Добавление задачи'} </h2>
                 <Form.InputField
                     placeholder='Введите название задачи...'
                     name='name'
@@ -63,7 +66,17 @@ const TaskForm: React.FC<Props> = (props) => {
                     name='deadline'
                     showName='Дедлайн'
                     type='date'
+                    startValue={props.task?.deadline || undefined}
+                    notRequired
                     validationF={validateTodoDeadline}/>
+                {
+                    props.task
+                    ? (
+                        <Form.CheckInput
+                            name='isDone'
+                            showName='Выполнено'/>
+                    ) : ''
+                }
                 <br/>
                 <br/>
                 <Button text={isChanging ? 'Сохранить!' : 'Создать!'}/>
