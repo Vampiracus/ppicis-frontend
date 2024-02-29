@@ -6,6 +6,8 @@ import Button from 'components/Button/Button'
 import { changeTask, postTask } from 'api/tasks'
 import { validateTodoDeadline, validateTodoDescription, validateTodoName } from '../../../../../../../utils/validation'
 
+type SubmitF = ((formEntries: Record<string, string | File | null | boolean>) => void)
+
 type Props = {
     shown: boolean
     setShown: (x: boolean) => void
@@ -18,7 +20,7 @@ type Props = {
 const TaskForm: React.FC<Props> = (props) => {
     const isChanging = !!props.task
 
-    const onSubmitCreate: ((formEntries: Record<string, string | File | null>) => void) = async fe => {
+    const onSubmitCreate: SubmitF = async fe => {
         if (fe.deadline === '') {
             fe.deadline = null
         }
@@ -31,7 +33,7 @@ const TaskForm: React.FC<Props> = (props) => {
         }
     }
 
-    const onSubmitChange: ((formEntries: Record<string, string | File | null | boolean>) => void) = async fe => {
+    const onSubmitChange: SubmitF = async fe => {
         if (fe.deadline === '') {
             fe.deadline = null
         }
@@ -79,7 +81,13 @@ const TaskForm: React.FC<Props> = (props) => {
                 }
                 <br/>
                 <br/>
-                <Button text={isChanging ? 'Сохранить!' : 'Создать!'}/>
+                <Button text={isChanging ? 'Сохранить!' : 'Создать!'} onClick={e => {
+                    const conf = confirm('Вы уверены? Это действие будет нельзя отменить')
+                    if (!conf) {
+                        e.preventDefault()
+                    }
+                }}/>
+
             </Form.Form>
         </Modal>
     );
