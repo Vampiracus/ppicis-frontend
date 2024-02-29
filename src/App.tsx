@@ -35,7 +35,6 @@ function App() {
 
   const user = useSelectUser()
   const loading = useSelectIsUserBeingLoaded()
-  console.log(loading)
 
   if (loading) {
     return <Loader/>

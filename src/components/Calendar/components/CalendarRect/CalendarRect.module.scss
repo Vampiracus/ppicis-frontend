@@ -1,0 +1,54 @@
+@import '/src/colors.scss';
+
+.calndarRect {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 5px;
+    width: 3rem;
+
+    & > span {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        
+        color: $text-duller;
+        font-size: 0.75rem;
+    }
+
+    &__text {
+        position: relative;
+        height: 3rem;
+        background-color: $background-light;
+        border-radius: 0.6rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2rem;
+        outline: 0;
+        border: 0;
+        transition: 0.15s;
+
+        &:hover {
+            background-color: $background-light-hover;
+        }
+        &:active {
+            background-color: $background-light-active;
+        }
+
+        &_global {
+            background-color: $error;
+        }
+
+        &_meeting {
+            &::after {
+                font-size: 1.5rem;
+                color: red;
+                content: '*';
+                position: absolute;
+                top: 0.1rem;
+                right: 0.1rem;
+            }
+        }
+    }
+}

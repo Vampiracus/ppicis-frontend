@@ -1,13 +1,14 @@
 import Header from 'components/Header/Header'
 import MyThemes from './components/MyThemes/MyThemes'
 import MyTeams from './components/MyTeams/MyTeams'
+import MentorCalendar from './components/MentorCalendar/MentorCalendar'
 
 const MentorPage = () => {
     return (
         <>
         <Header />
         <main>
-            Календарь
+            <MentorCalendar />
             <MyTeams />
             <MyThemes />
         </main>
