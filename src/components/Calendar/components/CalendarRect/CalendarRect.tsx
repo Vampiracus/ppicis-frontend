@@ -3,8 +3,8 @@ import styles from './CalendarRect.module.scss'
 import { daysShort, months } from '../../../../utils/other'
 
 type Props = {
-    global?: true
-    meeting?: true
+    global?: boolean
+    meeting?: boolean
     date: number
     showMonth?: boolean
     onClick?: React.MouseEventHandler<HTMLButtonElement>
@@ -22,7 +22,7 @@ const CalendarRect: React.FC<Props> = (props) => {
                 onClick={props.onClick}>
                 { day }
             </button>
-            <span>{daysShort[date.getDay()]}</span>
+            <span className={date.getDate() === new Date().getDate() ? styles.calndarRect_today : ''}>{daysShort[date.getDay()]}</span>
         </div>
     );
 };

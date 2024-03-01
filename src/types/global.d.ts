@@ -79,5 +79,20 @@ declare global {
         isDone: boolean
         updatedAt: string
         createdAt: string
-      }
+    }
+
+    type TEventInit = {
+        name: string
+        deadline: string
+        team_id?: number | null
+        comment: string
+    }
+
+    type TEvent = TEventInit & {
+        id: number
+        max_grade: number
+        season_id: number
+        updatedAt: string
+        createdAt: string
+    }
 }

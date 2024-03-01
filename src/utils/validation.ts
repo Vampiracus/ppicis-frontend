@@ -68,11 +68,11 @@ export const validateThemeName: ValidationFunction = name => {
 
 export const validateThemeDesctiption: ValidationFunction = description => {
     if (description.length < 3 || description.length > 200) {
-        return 'Название темы не должно содержать меньше 3 или больше 200 символов'
+        return 'Название не должно содержать меньше 3 или больше 200 символов'
     }
     if (!(/^[A-Za-zА-Яа-яЁё0-9 \-\'\"\.\,\:\;]*$/.test(description!))) {
         // eslint-disable-next-line max-len
-        return 'Описание темы может содержать только цифры, буквы кириллицы или латиницы или знаки препинания'
+        return 'Описание может содержать только цифры, буквы кириллицы или латиницы или знаки препинания'
     }
     return false
 }

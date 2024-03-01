@@ -27,3 +27,6 @@ export const myTeamsURL = teamsURL + '/my'
 
 export const todosURL = serverURL + '/todos'
 export const teamTodosBaseURL = todosURL + '/team/'
+
+export const eventsURL = serverURL + '/events'
+export const myEventsURL = eventsURL + '/my'
