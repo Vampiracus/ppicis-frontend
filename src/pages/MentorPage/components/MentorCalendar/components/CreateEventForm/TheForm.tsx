@@ -16,11 +16,14 @@ const TheForm: React.FC<Props> = ({ date }) => {
     const dispatch = useDispatch()
 
     const onSubmit: ((formEntries: Record<string, string | File>) => void) = async fe => {
+        if (!confirm('Вы уверены, что все поля заполнены верно? Удалить или отредактировать встречу будет уже нельзя')) {
+            return
+        }
+
         const team_id = (teams.find(t => fe.team === t.theme.name + ': ' + t.students.map(s => s.student.surname).join(', ')))?.id
 
         if (team_id) {
             const res = await createMeeting({ ...fe, team_id, deadline: new Date(date).toLocaleDateString('en') } as unknown as TEventInit)
-            console.log(res)
             
             if (res.event) {
                 dispatch(increaceCreated())

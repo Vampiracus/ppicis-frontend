@@ -6,20 +6,3 @@
     gap: 20px;
     max-width: calc(max(32vw, 320px));
 }
-
-.team {
-    display: flex;
-    max-width: calc(max(32vw, 320px, 100%));
-
-    & > span {
-        flex: 4;
-        text-align: right;
-    }
-
-    &__students {
-        display: flex;
-        flex-direction: column;
-        flex: 3;
-        text-align: left;
-    }
-}

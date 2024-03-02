@@ -1,0 +1,21 @@
+.team {
+    display: flex;
+    max-width: calc(max(32vw, 320px));
+
+    & > span {
+        flex: 4;
+        text-align: right;
+    }
+
+    &__students {
+        display: flex;
+        flex-direction: column;
+        flex: 3;
+        text-align: left;
+
+        &_clickable {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+}

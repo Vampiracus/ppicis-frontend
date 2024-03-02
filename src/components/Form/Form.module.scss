@@ -28,6 +28,7 @@
             text-align: left;
             font-size: 0.75rem;
             flex: 0;
+            color: $text-duller;
 
             &_errors {
                 color: $error;

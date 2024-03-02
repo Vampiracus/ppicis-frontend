@@ -95,4 +95,18 @@ declare global {
         updatedAt: string
         createdAt: string
     }
+
+    type TGrade = {
+        message: string,
+        grade: {
+            id: number
+            student_id: number
+            grade: number
+            mentor_id: number
+            did_attend: boolean
+            comment: string
+            updatedAt: string
+            createdAt: string
+        }
+    }
 }

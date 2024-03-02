@@ -19,10 +19,18 @@ const CalendarRect: React.FC<Props> = (props) => {
             <button
                 type='button'
                 className={styles.calndarRect__text + ' ' + (props.global ? styles.calndarRect__text_global : '') + ' ' + (props.meeting ? styles.calndarRect__text_meeting : '')}
-                onClick={props.onClick}>
+                onClick={props.onClick}
+                title='Посмотреть события на этот день'>
                 { day }
             </button>
-            <span className={date.getDate() === new Date().getDate() ? styles.calndarRect_today : ''}>{daysShort[date.getDay()]}</span>
+            <span 
+                className={
+                    date.getDate() === new Date().getDate() && date.getMonth() === new Date().getMonth()
+                    ? styles.calndarRect_today : ''
+                }
+            >
+                {daysShort[date.getDay()]}
+            </span>
         </div>
     );
 };

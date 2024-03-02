@@ -1,11 +1,11 @@
 import Modal from 'components/Modal/Modal'
 import React, { useEffect } from 'react'
 import styles from './TeamTasks.module.scss'
-import { shortName } from '../../../../../../utils/other'
 import { getTeamTasks } from 'api/tasks'
 import Button from 'components/Button/Button'
 import TaskForm from './TaskForm/TaskForm'
 import TaskList from './TaskList/TaskList'
+import TeamNTheme from 'components/TeamNTheme/TeamNTheme'
 
 type Props = {
     shown: boolean
@@ -44,12 +44,7 @@ const TeamTasks: React.FC<Props> = (props) => {
         <>
         <Modal shown={props.shown} setShown={props.setShown} class={styles.tasks}>
             <h2>Руководство командой</h2>
-            <div className={styles.team}>
-            <div className={styles.team__students}>
-                {props.team.students.map(s => <span key={s.record_id}>{shortName(s.student)}</span>)}
-            </div>
-            <span>«{props.team.theme.name}»</span>
-            </div>
+            <TeamNTheme team={props.team}/>
             <br/>
             <TaskList tasks={tasks} changed={created} setchanged={setcreated} team_id={props.team.id}/>
 

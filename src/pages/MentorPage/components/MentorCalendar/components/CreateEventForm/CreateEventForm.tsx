@@ -10,9 +10,7 @@ const CreateEventForm: React.FC<{ date: number }> = ({ date }) => {
     return (
         <>
         <div className={styles.createEventForm__welcome}>
-            <h2>{new Date(date).toLocaleDateString()}</h2>  
-            <h2>Ничего не запланировано</h2>
-            <Button text='Добавить встречу' onClick={() => setshowForm(true)}/>
+            <Button text={'Добавить встречу на ' + new Date(date).toLocaleDateString()} onClick={() => setshowForm(true)}/>
         </div>
         {
             showForm

@@ -4,6 +4,7 @@ import CalendarEl from 'components/Calendar/components/CalendarEl/CalendarEl'
 import { useEffect, useState } from 'react';
 import CreateEventForm from './components/CreateEventForm/CreateEventForm'
 import { useSelectEventsCreated } from 'slices/selectors'
+import EventForm from './components/EventForm/EventForm'
 
 
 const MentorCalendar = () => {
@@ -29,7 +30,7 @@ const MentorCalendar = () => {
                         isGlobal={!event.team_id}
                         isMeeting={!!event.team_id}
                         key={event.id}>
-                        myel
+                        <EventForm event={event} />
                     </CalendarEl>
                 ))
             }

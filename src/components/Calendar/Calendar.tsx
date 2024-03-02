@@ -10,7 +10,7 @@ type Props = {
 }
 
 const Calendar: React.FC<React.PropsWithChildren<Props>> = ({ children, DefaultModalEl }) => {
-    const [shownChild, setshownChild] = React.useState<any>(null)
+    const [shownChildren, setshownChildren] = React.useState<null | React.ReactNode[]>(null)
 
     const today = Date.now(), day = 1000 * 60 * 60 * 24
     const [firstDate, setfirstDate] = React.useState(today - day)
@@ -18,30 +18,34 @@ const Calendar: React.FC<React.PropsWithChildren<Props>> = ({ children, DefaultM
     const dates = new Array(7).fill(firstDate).map((d, i) => d + day * i)
     const kids = React.Children.toArray(children)
     
-    const findKidWDate = (date: number) => {
-        return kids.find(kid => {
+    const findKidsWDate = (date: number): null | React.ReactNode[] => {
+        const arr = kids.filter(kid => {
             return typeof kid !== 'string'
                 && typeof kid !== 'number'
                 && 'props' in kid
                 && 'date' in kid.props
                 && (new Date(kid.props.date)).toDateString() === (new Date(date)).toDateString()
-        }) || (DefaultModalEl ? (<DefaultModalEl date={date} />) : undefined)
+        })
+        if (arr.length === 0) {
+            return null
+        }
+        return arr
     }
 
-    function isGlobal(kid: ReactNode): boolean {
-        return typeof kid === 'object'
+    function isGlobal(kids: ReactNode[] | null): boolean {
+        return !!kids?.find(kid => (typeof kid === 'object'
             && kid !== null
             && 'props' in kid
             && 'isGlobal' in kid.props
-            && kid.props.isGlobal
+            && kid.props.isGlobal))
     }
 
-    function isMeeting(kid: ReactNode): boolean {
-        return typeof kid === 'object'
+    function isMeeting(kids: ReactNode[] | null): boolean {
+        return !!kids?.find(kid => (typeof kid === 'object'
             && kid !== null
             && 'props' in kid
             && 'isMeeting' in kid.props
-            && kid.props.isMeeting
+            && kid.props.isMeeting))
     }
     
     return (
@@ -51,26 +55,27 @@ const Calendar: React.FC<React.PropsWithChildren<Props>> = ({ children, DefaultM
             <div className={styles.calendar__rects}>
                 {
                     dates.map((d, i) => {
-                        const kid = findKidWDate(d)
+                        const kids = findKidsWDate(d)
                             
                         return (
                             <CalendarRect
                                 key={d}
                                 date={d}
                                 showMonth={i === 0}
-                                onClick={() => {setshownChild(kid)}}
-                                global={isGlobal(kid)}
-                                meeting={isMeeting(kid)}
+                                onClick={() => {setshownChildren((kids || []).concat(DefaultModalEl ? <DefaultModalEl key={0} date={d} /> : ''))}}
+                                global={isGlobal(kids)}
+                                meeting={isMeeting(kids)}
                                 />)
                         })
                 }
             </div>
             <CalendarControls
+                year={new Date(firstDate).getFullYear()}
                 next={(x?: number) => setfirstDate(firstDate + day * (x || 1))}
                 prev={(x?: number) => setfirstDate(firstDate - day * (x || 1))}/>
         </Card>
-        <Modal shown={!!shownChild} setShown={() => setshownChild(false)}>
-            { shownChild }
+        <Modal shown={!!shownChildren} setShown={() => setshownChildren(null)} class={styles.calendar__modal}>
+            { shownChildren }
         </Modal>
         </>
     );
