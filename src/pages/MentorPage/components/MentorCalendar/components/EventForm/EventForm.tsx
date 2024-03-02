@@ -5,6 +5,7 @@ import { useSelectMentorTeams } from 'slices/selectors'
 import Button from 'components/Button/Button'
 import Modal from 'components/Modal/Modal'
 import GradesForm from './GradesForm'
+import GradesInfo from './GradesInfo/GradesInfo'
 
 type Props = {
     event: TEvent
@@ -12,7 +13,8 @@ type Props = {
 
 const EventForm: React.FC<Props> = ({ event }) => {
     const mentorTeams = useSelectMentorTeams()
-    const [showGrades, setshowGrades] = useState(false);
+    const [showGrades, setshowGrades] = useState(false)
+    const [setGrades, setsetGrades] = useState(0);
 
     const team = mentorTeams.find(t => t.id === event.team_id)
 
@@ -30,18 +32,21 @@ const EventForm: React.FC<Props> = ({ event }) => {
                         <br />
                         <TeamNTheme team={team}/>
                         <br />
-                        Тут будут оценки
+                        <GradesInfo key={setGrades} team={team} event={event} />
                         <br />
                         <br />
                         <br />
-                        <Button text='Ведомости' title='Нажмите, чтобы выставить оценки' onClick={() => setshowGrades(true)}/>
+                        <Button text='Выставить оценки' title='Нажмите, чтобы изменить или выставить оценки' onClick={() => setshowGrades(true)}/>
                     </>
                 )
                 : ''
             }
         </div>
         <Modal shown={showGrades} setShown={setshowGrades}>
-            <GradesForm event={event} team={team} closeForm={() => setshowGrades(false)}/>
+            <GradesForm event={event} team={team} closeForm={() => {
+                setsetGrades(setGrades + 1)
+                setshowGrades(false)
+            }}/>
         </Modal>
         </>
     );

@@ -1,0 +1,14 @@
+.gradesInfo {
+    &__student {
+        display: flex;
+        justify-content: space-between;
+
+        & > :first-child {
+            text-align: left;
+        }
+        
+        & > :nth-child(2) {
+            text-align: right;
+        }
+    }
+}

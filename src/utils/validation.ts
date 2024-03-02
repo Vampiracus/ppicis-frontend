@@ -4,7 +4,7 @@ type ValidationFunction = (word: string) => string | false
 export const RegExps = {
     eld: /^[A-Za-z0-9]*$/,
     elrlmp: /^[A-Za-zА-Яа-яЁё \-]*$/,
-    elrldfp: /^[A-Za-zА-Яа-яЁё0-9 \-\'\"\.\,\:\;]*$/,
+    elrldfp: /^[A-Za-zА-Яа-яЁё0-9 \-\'\"\.\,\:\;\!\?]*$/,
 } as const
 
 type StringConfigType = {

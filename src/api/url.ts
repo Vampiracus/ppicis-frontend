@@ -32,3 +32,4 @@ export const eventsURL = serverURL + '/events'
 export const myEventsURL = eventsURL + '/my'
 
 export const gradesURL = serverURL + '/grades'
+export const eventGradesBaseURL = gradesURL + '/event/'

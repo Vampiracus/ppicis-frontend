@@ -1,5 +1,5 @@
 import { configuredFetch } from '../utils/api'
-import { gradesURL } from './url'
+import { eventGradesBaseURL, gradesURL } from './url'
 
 type TGradeInit = { [key: number]: {
     grade: string
@@ -22,4 +22,8 @@ export async function setGrades(grades: TGradeInit, event_id: number) {
         configuredFetch<{grade: TGrade}>(gradesURL, { method: 'POST', notification: { onFail: true } }, g)
         )
     return Promise.all(promises)
+}
+
+export function getEventGrades(event_id: number) {
+    return configuredFetch<{ grades?: TGrade[] }>(eventGradesBaseURL + event_id, { notification: { onFail: true } })
 }

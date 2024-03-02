@@ -37,13 +37,13 @@ const TheForm: React.FC<Props> = ({ date }) => {
             <Form.InputField 
                 name='name'
                 showName='Название мероприятия'
-                placeholder='Введите название мероприятия'
+                placeholder='Введите название мероприятия...'
                 startValue='Встреча с командой'
                 validationF={validateTodoName}/>
             <Form.InputField 
                 name='comment'
                 showName='Описание мероприятия'
-                placeholder='Введите описание мероприятия'
+                placeholder='Введите описание мероприятия...'
                 validationF={validateThemeDesctiption}/>
             <Form.SelectField
                 name='team'
