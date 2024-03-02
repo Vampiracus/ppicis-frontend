@@ -1,0 +1,18 @@
+.calendar {
+
+    &__rects {
+        display: flex;
+        gap: 1.8rem;
+    }
+
+    &__modal {
+        &:not(:has(:nth-child(2))) {
+            &::before {
+                content: 'Тут пока пусто';
+                text-align: center;
+                display: block;
+                font-size: 1.5rem;
+            }
+        }
+    }
+}

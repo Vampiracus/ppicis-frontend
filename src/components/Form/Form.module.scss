@@ -19,10 +19,21 @@
         color: inherit;
         font-size: 1rem;
         outline: 0;
+
+        &:has(+ label:not(:empty)) {
+            color: $error;  
+        }
         
         &__label {
             text-align: left;
             font-size: 0.75rem;
+            flex: 0;
+            color: $text-duller;
+
+            &_errors {
+                color: $error;
+                word-break: normal;
+            }
         }
 
         &__outer {
@@ -51,6 +62,10 @@
                     color: grey;
                 }
             }
+        }
+
+        &[type=date] {
+            color-scheme: dark;
         }
     }
 }

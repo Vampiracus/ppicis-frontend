@@ -1,0 +1,52 @@
+@import '/src/colors.scss';
+
+.header {
+    position: relative;
+    width: 100%;
+    min-height: 70px;
+    background-color: $background-dark;
+
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    align-items: flex-start;
+    padding: 15px;
+
+    & .headerSpan {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        color: $text-duller;
+        font-size: 0.75rem;
+        text-decoration: underline;
+
+        &::before{
+            background-image: url('/icis.png');
+            background-size: 27px 17px;
+            display: inline-block;
+            width: 27px; 
+            height: 17px;
+            content:"";
+        }
+    }
+
+    &__controls {
+        display: flex;
+        align-items: center;
+
+        &__info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 2px;
+
+            &_small {
+                color: $text-duller;
+                font-size: 0.75rem;
+            }
+        }
+    }
+}

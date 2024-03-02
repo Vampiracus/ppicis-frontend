@@ -1,0 +1,24 @@
+.modal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__content {
+        margin: 0 auto;
+        overflow: auto;
+        max-height: 100vh;
+
+        &::-webkit-scrollbar {
+            max-width: calc(min(1vw, 9px));
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+        }
+    }
+}

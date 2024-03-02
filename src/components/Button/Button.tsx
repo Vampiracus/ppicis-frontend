@@ -10,7 +10,7 @@ type Props = {
 
 const Button: React.FC<Props> = (props) => {
     return (
-        <button className={styles.button} onClick={props.onClick}>
+        <button className={styles.button} onClick={props.onClick} title={props.title}>
             { props.text }
         </button>
     );

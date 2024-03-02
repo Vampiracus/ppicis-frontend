@@ -1,0 +1,9 @@
+@import '/src/colors.scss';
+
+.card {
+    padding: 20px;
+    width: -moz-fit-content;
+    width: fit-content;
+    background-color: $background-dark;
+    border-radius: 20px;
+}

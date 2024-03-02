@@ -1,0 +1,12 @@
+@import '/src/colors.scss';
+
+.logout {
+    &::before {
+        content: url('/logout.svg');
+    }
+
+    background: none;
+    border-radius: 50%;
+    outline: 0;
+    border: 0;
+}

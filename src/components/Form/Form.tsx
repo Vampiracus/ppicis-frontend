@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { PropsWithChildren } from 'react'
+import React, { PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react'
 import styles from './Form.module.scss'
 
 type FormProps = {
@@ -13,6 +13,8 @@ type InputProps = {
     showName?: string
     type?: string
     notRequired?: true
+    validationF?: (s: string) => string | false
+    startValue?: string
 }
 
 type CheckInputProps = {
@@ -24,7 +26,7 @@ type SelectFieldProps = {
     placeholder?: string
     name: string
     showName?: string
-    options: string[]
+    options: (string | number)[]
 }
 
 // @ts-expect-error they are defined below
@@ -33,6 +35,7 @@ const Form: {
     InputField: React.FC<InputProps>
     CheckInput: React.FC<CheckInputProps>
     SelectField: React.FC<SelectFieldProps>
+    FileInput: React.FC
 } = {}
 
 
@@ -56,20 +59,43 @@ Form.Form = (props) => {
 }
 
 Form.InputField = (props) => {
+    const [error, setError] = useState<string | false>('')
+
+    const onChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(e => {
+        if (props.validationF) {
+            setError(props.validationF(e.target.value))
+        }
+    }, [])
+
+    const id = useRef('form-' + props.name + Math.trunc(Math.random() * 1000)).current
+
+    useEffect(() => {
+        if (props.startValue) {
+            const el = document.querySelector('#' + id) as HTMLInputElement | null
+            if (el) {
+                el.value = props.startValue
+            }
+        }
+    }, [id, props.startValue])
+
     return (
         <div className={styles.form__input__outer}>
-            <label htmlFor={'form-' + props.name} className={styles.form__input__label}>
+            <label htmlFor={id} className={styles.form__input__label}>
                 {props.showName}
             </label>
             <input
-                id={'form-' + props.name}
+                id={id}
                 className={styles.form__input}
                 placeholder={props.placeholder}
                 name={props.name}
                 type={props.type}
                 title={props.showName}
                 required = {props.notRequired ? false : true}
+                onChange={onChange}
             />
+            <label htmlFor={id} className={styles.form__input__label + ' ' + styles.form__input__label_errors}>
+                {error}
+            </label>
         </div>
     )
 }
@@ -102,8 +128,8 @@ Form.SelectField = (props) => {
                 title={props.showName}
             >
                 <option disabled>{props.placeholder}</option>
-                {props.options.map(option => (
-                    <option key={option}>
+                {props.options.map((option, i) => (
+                    <option key={option + ' ' + i}>
                         {option}
                     </option>
                 ))}
@@ -112,4 +138,13 @@ Form.SelectField = (props) => {
     )
 }
 
-export default Form;
+Form.FileInput = () => {
+    return (
+        <div className={styles.form__input__outer}>
+            <label htmlFor={'form-file'} className={styles.form__input__label}> Загрузить файл </label>
+            <input type='file' name='file'/>
+        </div>
+    )
+}
+
+export default Form as Readonly<typeof Form>;

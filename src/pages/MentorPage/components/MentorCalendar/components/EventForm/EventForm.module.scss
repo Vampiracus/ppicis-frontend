@@ -1,0 +1,15 @@
+.eventForm {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    max-width: max(320px, 30vw);
+    margin-bottom: 40px;
+
+    & > h2 + h2 {
+        font-weight: 100;
+    }
+}
+
+.gradeForm {
+    width: 400px;
+}

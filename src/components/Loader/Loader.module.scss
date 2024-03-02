@@ -1,0 +1,134 @@
+.loader {
+    position: relative;
+    display: inline-block;
+    width: 160px;
+    height: 160px;
+    padding: 3px;
+    border: solid #f50 3px;
+    border-radius: 40%;
+    color: #f41;
+
+    &__outer {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    & p {
+        position: absolute;
+        margin: 0;
+        top: 38px;
+        left: 42px;
+        font-size: 60px;
+    }
+
+    & div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        margin: 20px;
+        animation: lds-ring 9s linear infinite;
+        border-color: #fff transparent transparent transparent;
+        
+        &:nth-child(2) {
+            animation-delay: -0.4s;
+        }
+
+        &:nth-child(3) {
+            animation-delay: -0.8s;
+        }
+        
+        &:nth-child(4) {
+            animation-delay: -1.2s;
+        }
+        
+        &:nth-child(5) {
+            animation-delay: -1.6s;
+        }
+        
+        &:nth-child(6) {
+            animation-delay: -2.0s;
+        }
+        
+        &:nth-child(7) {
+            animation-delay: -2.4s;
+        }
+        
+        &:nth-child(8) {
+            animation-delay: -2.8s;
+        }
+        
+        &:nth-child(9) {
+            animation-delay: -3.2s;
+        }
+        
+        &:nth-child(10) {
+            animation-delay: -3.6s;
+        }
+        
+        &:nth-child(11) {
+            animation-delay: -4.0s;
+        }
+
+        &:nth-child(12) {
+            animation-delay: -4.4s;
+        }
+
+        &:nth-child(13) {
+            animation-delay: -4.8s;
+        }
+        
+        &:nth-child(14) {
+            animation-delay: -5.2s;
+        }
+
+        &:nth-child(15) {
+            animation-delay: -5.6s;
+        }
+
+        &:nth-child(16) {
+            animation-delay: -6.0s;
+        }
+
+        &:nth-child(17) {
+            animation-delay: -6.4s;
+        }
+
+        &:nth-child(18) {
+            animation-delay: -6.8s;
+        }
+
+        &:nth-child(19) {
+            animation-delay: -7.2s;
+        }
+
+        &:nth-child(20) {
+            animation-delay: -7.6s;
+        }
+
+        &:nth-child(21) {
+            animation-delay: -8.0s;
+        }
+
+        &:nth-child(22) {
+            animation-delay: -8.4s;
+        }
+
+        &:nth-child(23) {
+            animation-delay: -8.8s;
+        }
+    }
+}
+
+@keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

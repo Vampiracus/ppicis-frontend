@@ -1,0 +1,19 @@
+@import '/src/colors.scss';
+
+.createEventForm {
+    width: 300px;
+
+    &__welcome {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+        & :nth-child(2) {
+            color: $text-duller;
+        }
+
+        & > button {
+            margin-top: 20px;
+        }
+    }
+}

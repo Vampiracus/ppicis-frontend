@@ -1,0 +1,44 @@
+@import '/src/colors.scss';
+
+.arrow {
+    background-color: $info;
+    border-radius: 100%;
+    width: 1.8rem;
+    height: 1.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-weight: 900;
+    border: 0;
+    transition: 0.2s;
+
+    &:hover {
+        background-color: $info-hover;
+    }
+    &:active {
+        background-color: $info-active;
+    }
+
+    &::after {
+        content: '>';
+    }
+
+    &_left {
+        &::after {
+            content: '<'
+        }
+    }
+
+    &_large:is(&_left) {
+        &::after {
+            content: '<<'
+        }
+    }
+
+    &_large {
+        &::after {
+            content: '>>';
+        }
+    }
+}
