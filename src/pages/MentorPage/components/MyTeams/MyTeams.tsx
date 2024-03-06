@@ -13,7 +13,7 @@ const MyTeams = () => {
 
     React.useEffect(() => {
         (async function getTeams() {
-            const t = (await getMyTeams()).filter(t => t !== undefined) as TTeamInfo[]
+            const t = (await getMyTeams()).filter(t => t !== undefined) as TMentorTeamInfo[]
             dispatch(setMentorTeams(t))
         })()
     }, [])

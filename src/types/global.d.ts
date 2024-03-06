@@ -52,9 +52,23 @@ declare global {
         second_name: string | null
         group: string | null
         social: string | null
+        status?: string
     }
 
     type TTeamInfo = {
+        id: number
+        season_id: number
+        mentor_id: number | null
+        status: string
+        createdAt: string
+        students: Array<{
+            record_id: number
+            student: TUserInfo
+        }>
+        theme: TTeamTheme | null
+    }
+
+    type TMentorTeamInfo = {
         id: number
         season_id: number
         mentor_id: number

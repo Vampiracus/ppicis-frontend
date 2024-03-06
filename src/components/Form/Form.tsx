@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react'
 import styles from './Form.module.scss'
+import InfoSvg from 'components/InfoSvg/InfoSvg'
 
 type FormProps = {
     onSubmit?: (formEntries: Record<string, string | File>) => void
@@ -15,6 +16,7 @@ type InputProps = {
     notRequired?: true
     validationF?: (s: string) => string | false
     startValue?: string
+    infotext?: string
 }
 
 type CheckInputProps = {
@@ -83,6 +85,7 @@ Form.InputField = (props) => {
             <label htmlFor={id} className={styles.form__input__label}>
                 {props.showName}
             </label>
+            {props.infotext ? <InfoSvg className={styles.form__input__infosvg} title={props.infotext}/> : ''}
             <input
                 id={id}
                 className={styles.form__input}

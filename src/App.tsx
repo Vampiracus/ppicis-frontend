@@ -11,6 +11,7 @@ import MentorPage from './pages/MentorPage/MentorPage'
 import { getCurrentSeason } from 'api/season'
 import { setSeasonData } from 'slices/seasonSlice'
 import Loader from 'components/Loader/Loader'
+import StudentPage from './pages/StudentPage/StudentPage'
 
 function App() {
 
@@ -55,7 +56,13 @@ function App() {
     )
   }
 
-  return <>123</>
+  if (user.role === 'Student') {
+    return (
+      <StudentPage />
+    )
+  }
+
+  return <>Когда-то здесь будет страница для ползователей {user.role}</>
 }
 
 export default App

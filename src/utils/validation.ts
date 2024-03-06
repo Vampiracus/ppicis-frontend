@@ -152,17 +152,17 @@ type NumberConfigType = { min?: number, max?: number }
 
 export const validateNumber = (n: number | string, name: string, config?: NumberConfigType) => {
     if (isNaN(Number(n))) {
-        return name.toString() + ' не является числом. Подано: ' + n.toString()
+        return 'Не является числом'
     }
     if (config) {
         if (config.min !== undefined) {
             if (Number(n) < config.min) {
-                return 'Поле ' + name.toString() + ' должно быть больше или равно ' + config.min
+                return name.toString() + ' должно быть больше или равно ' + config.min
             }
         }
         if (config.max !== undefined) {
             if (Number(n) > config.max) {
-                return 'Поле ' + name.toString() + ' должно быть меньше или равно ' + config.max
+                return name.toString() + ' должно быть меньше или равно ' + config.max
             }
         }
     }

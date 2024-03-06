@@ -20,7 +20,7 @@ const Header: React.FC<PropsWithChildren> = ({ children }) => {
                     <span>{shortName(user!)}</span>
                     <span className={styles.header__controls__info_small}>{user?.login}</span>
                 </div>
-                <LeaveButton></LeaveButton>
+                <LeaveButton />
             </div>
         </header>
     )
