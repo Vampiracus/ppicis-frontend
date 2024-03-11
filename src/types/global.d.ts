@@ -1,4 +1,4 @@
-import type { studentInTeamStatus, userRole } from './types'
+import type { seasonStatus, studentInTeamStatus, userRole } from './types'
 
 declare global {
     type TUser = {
@@ -22,6 +22,7 @@ declare global {
         start: string
         end: string
         name: string
+        status: seasonStatus
     }
 
     type TThemeInit = {

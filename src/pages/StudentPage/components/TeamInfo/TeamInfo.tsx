@@ -12,6 +12,7 @@ import NoTeamEl from './components/NoTeamEl/NoTeamEl'
 import { getMyTeamId, getTeam } from 'api/teams'
 import SentJoinRequestEl from './components/SentJoinRequestEl/SentJoinRequestEl'
 import AcceptNewMember from './components/AcceptNewMember/AcceptNewMember'
+import DeleteTeam from './components/DeleteTeam/DeleteTeam'
 
 const TeamInfo: React.FC = () => {
     const [tasks, settasks] = React.useState<TTask[]>([])
@@ -37,6 +38,7 @@ const TeamInfo: React.FC = () => {
             if (team) {
                 dispatch(setStudentTeam(team))
             } else {
+                dispatch(setStudentTeam(null))
                 return
             }
 
@@ -58,7 +60,7 @@ const TeamInfo: React.FC = () => {
                 }
             }
         })()
-    }, [changed])
+    }, [changed, dispatch])
     
     return (
         <>
@@ -70,6 +72,7 @@ const TeamInfo: React.FC = () => {
                 : team
                 ? (<>
                     <TeamNTheme team={team}/>
+                    <DeleteTeam increaseChanged={() => setchanged(changed + 1)}/>
                     <AcceptNewMember team={team} increaseChanged={() => setchanged(changed + 1)}/>
                     <TaskList tasks={tasks} changed={created} setchanged={setcreated} team_id={team.id}/>
                 </>)

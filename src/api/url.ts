@@ -24,6 +24,7 @@ export function fileURL(id: number) {
 export const teamsURL = serverURL + '/teams'
 export const teamInfoBaseURL = teamsURL + '/info/'
 export const myTeamsURL = teamsURL + '/my'
+export const dismantleMyTeamURL = myTeamsURL + '/dismantle'
 export const createTeamURL = teamsURL + '/create'
 export const joinTeamURL = teamsURL + '/join'
 export const rejectJoinTeamURL = joinTeamURL + '/reject'

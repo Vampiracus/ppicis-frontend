@@ -32,6 +32,7 @@ function App() {
         }
       } catch (e) {
         dispatch(setUserData({ id: 0 } as TUser))
+      } finally {
         dispatch(setIsUserBeingLoaded(false))
       }
     }

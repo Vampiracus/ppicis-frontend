@@ -1,5 +1,5 @@
 import { configuredFetch } from '../utils/api'
-import { acceptJoinTeamURL, createTeamURL, joinTeamURL, myTeamsURL, rejectJoinTeamURL, teamInfoBaseURL } from './url'
+import { acceptJoinTeamURL, createTeamURL, dismantleMyTeamURL, joinTeamURL, myTeamsURL, rejectJoinTeamURL, teamInfoBaseURL } from './url'
 
 type NewTeam = {
     id: number
@@ -47,4 +47,8 @@ export function rejectInTeam(user_id: number) {
 
 export function acceptInTeam(user_id: number) {
     return configuredFetch(acceptJoinTeamURL, { method: 'PUT', saveStatus: true }, { user_id })
+}
+
+export function dismantleMyTeam() {
+    return configuredFetch(dismantleMyTeamURL, { method: 'DELETE', saveStatus: true })
 }
