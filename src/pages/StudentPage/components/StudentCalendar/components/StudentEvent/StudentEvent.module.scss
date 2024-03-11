@@ -1,0 +1,11 @@
+.studentGlobalEvent {
+    max-width: calc(max(300px, 34vw));
+    text-align: center;
+
+    &__files {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 10px 0;
+    }
+}

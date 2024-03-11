@@ -5,6 +5,7 @@ import TeamInfo from './components/TeamInfo/TeamInfo'
 import { useSelectUser } from 'slices/selectors'
 import { userStatuses } from '../../types/types'
 import NotApproved from './components/NotApproved/NotApproved'
+import StudentCalendar from './components/StudentCalendar/StudentCalendar'
 
 const StudentPage = () => {
     const user = useSelectUser()
@@ -15,7 +16,12 @@ const StudentPage = () => {
         <main className={styles.studentPage}>
             {
                 user?.status === userStatuses.APPROVED
-                ? <TeamInfo />
+                ? (
+                    <>
+                    <StudentCalendar />
+                    <TeamInfo />
+                    </>
+                )
                 : <NotApproved />
             }
         </main>
