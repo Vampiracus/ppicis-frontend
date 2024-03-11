@@ -4,18 +4,22 @@ import { getTeamTasks } from 'api/tasks'
 import TaskList from './components/TaskList/TaskList'
 import TeamNTheme from 'components/TeamNTheme/TeamNTheme'
 import Card from 'components/Card/Card'
-import { useSelectIsTeamLoading, useSelectStudentTeam } from 'slices/selectors'
+import { useSelectIsTeamLoading, useSelectStudentTeam, useSelectStudentTeamId } from 'slices/selectors'
 import { useDispatch } from 'react-redux'
-import { setIsLoading, setStudentTeam } from 'slices/teamsSlice'
-import { getMyTeam } from 'api/teams'
+import { setIsLoading, setStudentTeam, setStudentTeamId } from 'slices/teamsSlice'
 import Loader from 'components/Loader/Loader'
 import NoTeamEl from './components/NoTeamEl/NoTeamEl'
+import { getMyTeamId, getTeam } from 'api/teams'
+import SentJoinRequestEl from './components/SentJoinRequestEl/SentJoinRequestEl'
+import AcceptNewMember from './components/AcceptNewMember/AcceptNewMember'
 
 const TeamInfo: React.FC = () => {
     const [tasks, settasks] = React.useState<TTask[]>([])
+    const [changed, setchanged] = React.useState<number>(0)
     const [created, setcreated] = React.useState(0)
     
     const team = useSelectStudentTeam()
+    const team_id = useSelectStudentTeamId()
     const loading = useSelectIsTeamLoading()
 
     const dispatch = useDispatch()
@@ -23,7 +27,12 @@ const TeamInfo: React.FC = () => {
     useEffect(() => {
         (async function () {
             dispatch(setIsLoading(true))
-            const team = await getMyTeam()
+            const team_id = await getMyTeamId()
+            let team: null | TTeamInfo = null
+            if (team_id !== null) {
+                dispatch(setStudentTeamId(team_id))
+                team = await getTeam(team_id)
+            }
             dispatch(setIsLoading(false))
             if (team) {
                 dispatch(setStudentTeam(team))
@@ -49,7 +58,7 @@ const TeamInfo: React.FC = () => {
                 }
             }
         })()
-    }, [])
+    }, [changed])
     
     return (
         <>
@@ -61,9 +70,11 @@ const TeamInfo: React.FC = () => {
                 : team
                 ? (<>
                     <TeamNTheme team={team}/>
-                    <br/>
+                    <AcceptNewMember team={team} increaseChanged={() => setchanged(changed + 1)}/>
                     <TaskList tasks={tasks} changed={created} setchanged={setcreated} team_id={team.id}/>
                 </>)
+                : team_id !== null
+                ? <SentJoinRequestEl team_id={ team_id } />
                 : <NoTeamEl />
             }
             

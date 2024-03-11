@@ -1,4 +1,4 @@
-import type { userRole } from './types'
+import type { studentInTeamStatus, userRole } from './types'
 
 declare global {
     type TUser = {
@@ -64,6 +64,7 @@ declare global {
         students: Array<{
             record_id: number
             student: TUserInfo
+            status: studentInTeamStatus
         }>
         theme: TTeamTheme | null
     }
@@ -119,5 +120,14 @@ declare global {
         comment: string
         updatedAt: string
         createdAt: string
+    }
+
+    type TStudentInTeam = {
+        id: number
+        team_id: number
+        student_id: number
+        status: string
+        createdAt: string
+        updatedAt: string
     }
 }

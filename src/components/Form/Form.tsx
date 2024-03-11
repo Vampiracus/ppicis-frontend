@@ -17,6 +17,7 @@ type InputProps = {
     validationF?: (s: string) => string | false
     startValue?: string
     infotext?: string
+    autofocus?: boolean
 }
 
 type CheckInputProps = {
@@ -95,6 +96,7 @@ Form.InputField = (props) => {
                 title={props.showName}
                 required = {props.notRequired ? false : true}
                 onChange={onChange}
+                autoFocus={props.autofocus}
             />
             <label htmlFor={id} className={styles.form__input__label + ' ' + styles.form__input__label_errors}>
                 {error}

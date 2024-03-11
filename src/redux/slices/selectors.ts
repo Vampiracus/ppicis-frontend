@@ -7,6 +7,7 @@ export const useSelectSeason = () => useTypedSelector(s => s.season.data)
 
 export const useSelectMentorTeams = () => useTypedSelector(s => s.teams.mentorTeams)
 export const useSelectStudentTeam = () => useTypedSelector(s => s.teams.studentTeam)
+export const useSelectStudentTeamId = () => useTypedSelector(s => s.teams.studentTeamId)
 export const useSelectIsTeamLoading = () => useTypedSelector(s => s.teams.loading)
 
 export const useSelectEventsCreated = () => useTypedSelector(s => s.events.created)

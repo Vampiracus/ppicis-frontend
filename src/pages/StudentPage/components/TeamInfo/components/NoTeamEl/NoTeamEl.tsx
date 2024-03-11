@@ -2,9 +2,9 @@ import Form from 'components/Form/Form'
 import styles from './NoTeamEl.module.scss'
 import { validateNumber } from '../../../../../../utils/validation'
 import Button from 'components/Button/Button'
-import { createNewTeam, getTeam } from 'api/teams'
+import { createNewTeam, getTeam, joinTeam } from 'api/teams'
 import { useDispatch } from 'react-redux'
-import { setStudentTeam } from 'slices/teamsSlice'
+import { setStudentTeam, setStudentTeamId } from 'slices/teamsSlice'
 
 const NoTeamEl = () => {
     const dispatch = useDispatch()
@@ -17,9 +17,18 @@ const NoTeamEl = () => {
         }
     }
 
+    const onSubmit: ((formEntries: Record<string, string | File>) => void) = async fe => {
+        const team_id = Number(fe.team_id)
+        const res = await joinTeam(team_id)
+
+        if (res.studentsInTeams) {
+            dispatch(setStudentTeamId(team_id))
+            dispatch(setStudentTeam(await getTeam(res.studentsInTeams.team_id)))
+        }
+    }
+
     return (
-        <Form.Form class={styles.noTeamForm}>
-            <h2>Команда</h2>
+        <Form.Form class={styles.noTeamForm} onSubmit={onSubmit}>
             <div>Вы не состоите в команде</div>
             <Form.InputField
                 name='team_id'

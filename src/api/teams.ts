@@ -1,5 +1,5 @@
 import { configuredFetch } from '../utils/api'
-import { createTeamURL, myTeamsURL, teamInfoBaseURL } from './url'
+import { acceptJoinTeamURL, createTeamURL, joinTeamURL, myTeamsURL, rejectJoinTeamURL, teamInfoBaseURL } from './url'
 
 type NewTeam = {
     id: number
@@ -22,14 +22,8 @@ export async function getMyTeams() {
     return []
 }
 
-export async function getMyTeam(): Promise<TTeamInfo | null> {
-    const resp = await configuredFetch<{ team_id?: number[] }>(myTeamsURL, { notification: { none: true } })
-    const id = Number(resp.team_id)
-
-    if (!isNaN(id)) {
-        return (await configuredFetch<{team?: TTeamInfo}>(teamInfoBaseURL + id, { notification: { onFail: true } })).team || null
-    }
-    return null
+export async function getMyTeamId(): Promise<number | null> {
+    return (await configuredFetch<{ team_id?: number }>(myTeamsURL, { notification: { none: true } })).team_id || null
 }
 
 export function createNewTeam() {
@@ -37,5 +31,20 @@ export function createNewTeam() {
 }
 
 export async function getTeam(id: number): Promise<TTeamInfo | null> {
-    return (await configuredFetch<{team?: TTeamInfo}>(teamInfoBaseURL + id, { notification: { onFail: true } })).team || null
+    return (await configuredFetch<{team?: TTeamInfo}>(teamInfoBaseURL + id, { notification: { none: true } })).team || null
+}
+
+export function joinTeam(team_id: number) {
+    return configuredFetch<{studentsInTeams?: TStudentInTeam}>(
+        joinTeamURL,
+        { method: 'POST', notification: { onFail: true } },
+        { team_id })
+}
+
+export function rejectInTeam(user_id: number) {
+    return configuredFetch(rejectJoinTeamURL, { method: 'PUT', saveStatus: true }, { user_id })
+}
+
+export function acceptInTeam(user_id: number) {
+    return configuredFetch(acceptJoinTeamURL, { method: 'PUT', saveStatus: true }, { user_id })
 }
