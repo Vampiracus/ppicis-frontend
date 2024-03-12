@@ -10,9 +10,10 @@ import EventGrades from './EventGrades'
 
 type Props = {
     event: TEvent
+    grade?: TGrade
 }
 
-const StudentEvent: React.FC<Props> = ({ event }) => {
+const StudentEvent: React.FC<Props> = ({ event, grade }) => {
     const [fileids, setfileids] = useState<EventFile[]>([]);
     const [changed, setchanged] = useState(0);
 
@@ -42,7 +43,7 @@ const StudentEvent: React.FC<Props> = ({ event }) => {
         <div className={styles.studentEvent}>
             <h2>{event.name}</h2>
             <p>{event.comment}</p>
-            <EventGrades event={event}/>
+            <EventGrades event={event} grade={grade}/>
             <span>Загруженные файлы:</span>
             <div className={styles.studentEvent__files}>
             {

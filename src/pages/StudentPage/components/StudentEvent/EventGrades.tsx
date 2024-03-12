@@ -4,19 +4,21 @@ import styles from './StudentEvent.module.scss'
 
 type Props = {
     event: TEvent
+    grade?: TGrade
 }
 
-const EventGrades: FC<Props> = ({ event }) => {
-    const [grades, setgrades] = useState<TGrade[]>([]);
+const EventGrades: FC<Props> = ({ event, grade }) => {
+    const [grades, setgrades] = useState<TGrade[]>(grade ? [grade] : []);
 
     useEffect(() => {
         (async function() {
+            if (grades) return
             const res = await getEventGrades(event.id)
             if (res.grades) {
                 setgrades(res.grades)
             }
         })()
-    }, [])
+    }, [event, grades])
 
     if (grades.length === 0) return ''
 

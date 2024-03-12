@@ -6,6 +6,7 @@ import { useSelectUser } from 'slices/selectors'
 import { userStatuses } from '../../types/types'
 import NotApproved from './components/NotApproved/NotApproved'
 import StudentCalendar from './components/StudentCalendar/StudentCalendar'
+import StudentGrades from './components/StudentGrades/StudentGrades'
 
 const StudentPage = () => {
     const user = useSelectUser()
@@ -20,6 +21,7 @@ const StudentPage = () => {
                     <>
                     <StudentCalendar />
                     <TeamInfo />
+                    <StudentGrades />
                     </>
                 )
                 : <NotApproved />

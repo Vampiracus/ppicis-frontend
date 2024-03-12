@@ -2,7 +2,7 @@ import { getMyEvents } from 'api/events'
 import Calendar from 'components/Calendar/Calendar'
 import CalendarEl from 'components/Calendar/components/CalendarEl/CalendarEl'
 import { useEffect, useState } from 'react';
-import StudentEvent from './components/StudentEvent/StudentEvent'
+import StudentEvent from '../StudentEvent/StudentEvent'
 
 
 const StudentCalendar = () => {

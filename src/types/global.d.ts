@@ -122,6 +122,10 @@ declare global {
         updatedAt: string
         createdAt: string
     }
+    type TGradeWEvent = TGrade & {
+        event_id: number,
+        event: TEvent
+    }
 
     type TStudentInTeam = {
         id: number
