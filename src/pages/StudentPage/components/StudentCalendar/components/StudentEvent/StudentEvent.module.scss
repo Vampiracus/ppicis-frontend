@@ -7,5 +7,10 @@
         flex-direction: column;
         gap: 5px;
         padding: 10px 0;
+
+        &__item {
+            display: flex;
+            gap: 5px;
+        }
     }
 }

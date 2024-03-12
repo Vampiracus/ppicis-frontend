@@ -12,6 +12,7 @@ const DeleteTeam: FC<{ increaseChanged: () => void }> = ({ increaseChanged }) =>
     }
 
     const dismantle = async () => {
+        if (!confirm('Вы уверены, что хотите удалить команду?')) return
         const res = await dismantleMyTeam()
         if (res.status === 200) {
             increaseChanged()

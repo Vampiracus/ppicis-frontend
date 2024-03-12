@@ -1,5 +1,5 @@
 import { configuredFetch } from '../utils/api'
-import { eventFilesBaseURL, themeFilesBaseURL } from './url'
+import { eventFilesBaseURL, fileURL, themeFilesBaseURL } from './url'
 
 export type EventFile = {
     record_id: number
@@ -25,4 +25,8 @@ export function postEventFile(fd: FormData, event_id: number) {
         eventFilesBaseURL + event_id, 
         { method: 'POST', noJSONBody: true, body: fd },
     )
+}
+
+export function removeFile(id: number) {
+    return configuredFetch(fileURL(id), { method: 'DELETE', saveStatus: true })
 }
