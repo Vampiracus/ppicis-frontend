@@ -37,7 +37,7 @@ const RegPage = () => {
                 <Form.InputField placeholder='Введите имя...' name='first_name' showName='Имя' validationF={validateName}/>
                 <Form.InputField placeholder='Введите отчество...' name='second_name' showName='Отчество' notRequired validationF={validateName}/>
                 <Form.InputField placeholder='Введите группу / организацию...' name='group' showName='Группа / организация' validationF={validateGroup}/>
-                <Form.InputField placeholder='Введите ваш телефон / почту / telegram...' name='social' showName='Контакты' notRequired  validationF={validateSocial}/>
+                <Form.InputField placeholder='Введите ваш telegram...' name='social' showName='Telegram' notRequired  validationF={validateSocial}/>
                 <br/>
                 <br/>
                 <Link to={homeURL} style={{textDecoration: 'underline'}}>Вход</Link>

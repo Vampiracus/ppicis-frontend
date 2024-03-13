@@ -46,6 +46,14 @@
             &_small {
                 color: $text-duller;
                 font-size: 0.75rem;
+
+                & > * {
+                    margin: 0 3px;
+                }
+
+                & span[title] {
+                    cursor: help;
+                }
             }
         }
     }
