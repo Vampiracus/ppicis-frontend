@@ -1,0 +1,25 @@
+@import '/src/colors.scss';
+
+.noTeamForm {
+
+    &__controls {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+
+        & > button {
+            flex: 1;
+        }
+
+        & :first-child {
+            background-color: $background-light;
+
+            &:hover {
+                background-color: $background-light-hover;
+            }
+            &:active {
+                background-color: $background-light-active;
+            }
+        }
+    }
+}

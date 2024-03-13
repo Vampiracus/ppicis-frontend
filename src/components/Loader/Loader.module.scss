@@ -9,8 +9,8 @@
     color: #f41;
 
     &__outer {
-        width: 100vw;
-        height: 100vh;
+        position: absolute;
+        inset: 0;
         display: flex;
         justify-content: center;
         align-items: center;

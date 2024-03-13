@@ -3,7 +3,7 @@ import styles from './Card.module.scss'
 
 const Card: React.FC<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>> = ({ children, ...props }) => {
     return (
-        <div {...props} className={styles.card + ' ' + props.className}>
+        <div {...props} className={styles.card + ' ' + (props.className ? props.className : '')}>
             { children }
         </div>
     );

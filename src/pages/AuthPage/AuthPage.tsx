@@ -27,7 +27,7 @@ const AuthPage = () => {
             <Form.Form class={styles.authform} onSubmit={onSubmit}>
                 <h2> Авторизация </h2>
                 <div>
-                    <Form.InputField placeholder='Введите логин...' name='login' showName='Логин'/>
+                    <Form.InputField placeholder='Введите логин...' name='login' showName='Логин' autofocus/>
                     <Form.InputField placeholder='Введите пароль...' name='password' showName='Пароль' type='password'/>
                     <Form.CheckInput name='rememberme' showName='Запомнить меня'/>
                 </div>

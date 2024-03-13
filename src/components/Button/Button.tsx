@@ -6,11 +6,12 @@ type Props = {
     text?: string
     class?: string
     onClick?: React.MouseEventHandler<HTMLButtonElement>
+    type?: "button" | "submit" | "reset"
 }
 
 const Button: React.FC<Props> = (props) => {
     return (
-        <button className={styles.button} onClick={props.onClick} title={props.title}>
+        <button className={styles.button + ' ' + (props.class ? props.class : '')} onClick={props.onClick} title={props.title} type={props.type}>
             { props.text }
         </button>
     );

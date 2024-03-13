@@ -23,7 +23,7 @@
         &:has(+ label:not(:empty)) {
             color: $error;  
         }
-        
+
         &__label {
             text-align: left;
             font-size: 0.75rem;
@@ -41,6 +41,13 @@
             flex-direction: column;
             padding: 5px 0;
             gap: 3px;
+            position: relative;
+        }
+
+        &__infosvg {
+            position: absolute;
+            right: 0;
+            top: 1.2rem;
         }
 
         &::placeholder {

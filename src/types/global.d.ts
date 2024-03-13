@@ -1,4 +1,4 @@
-import type { userRole } from './types'
+import type { seasonStatus, studentInTeamStatus, userRole } from './types'
 
 declare global {
     type TUser = {
@@ -22,6 +22,7 @@ declare global {
         start: string
         end: string
         name: string
+        status: seasonStatus
     }
 
     type TThemeInit = {
@@ -52,9 +53,24 @@ declare global {
         second_name: string | null
         group: string | null
         social: string | null
+        status?: string
     }
 
     type TTeamInfo = {
+        id: number
+        season_id: number
+        mentor_id: number | null
+        status: string
+        createdAt: string
+        students: Array<{
+            record_id: number
+            student: TUserInfo
+            status: studentInTeamStatus
+        }>
+        theme: TTeamTheme | null
+    }
+
+    type TMentorTeamInfo = {
         id: number
         season_id: number
         mentor_id: number
@@ -105,5 +121,18 @@ declare global {
         comment: string
         updatedAt: string
         createdAt: string
+    }
+    type TGradeWEvent = TGrade & {
+        event_id: number,
+        event: TEvent
+    }
+
+    type TStudentInTeam = {
+        id: number
+        team_id: number
+        student_id: number
+        status: string
+        createdAt: string
+        updatedAt: string
     }
 }

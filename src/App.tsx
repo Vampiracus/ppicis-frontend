@@ -11,6 +11,8 @@ import MentorPage from './pages/MentorPage/MentorPage'
 import { getCurrentSeason } from 'api/season'
 import { setSeasonData } from 'slices/seasonSlice'
 import Loader from 'components/Loader/Loader'
+import StudentPage from './pages/StudentPage/StudentPage'
+import ErrorPage from './pages/ErrorPage/ErrorPage'
 
 function App() {
 
@@ -18,15 +20,20 @@ function App() {
 
   useEffect(() => {
     async function init() {
-      const me = await getMe()
-      dispatch(setIsUserBeingLoaded(false))
-      if (me.user) {
-        dispatch(setUserData(me.user))
-      }
+      try {
+        const me = await getMe()
+        if (me.user) {
+          dispatch(setUserData(me.user))
+        }
 
-      const season = await getCurrentSeason()
-      if (season.season) {
-        dispatch(setSeasonData(season.season))
+        const season = await getCurrentSeason()
+        if (season.season) {
+          dispatch(setSeasonData(season.season))
+        }
+      } catch (e) {
+        dispatch(setUserData({ id: 0 } as TUser))
+      } finally {
+        dispatch(setIsUserBeingLoaded(false))
       }
     }
 
@@ -55,7 +62,13 @@ function App() {
     )
   }
 
-  return <>123</>
+  if (user.role === 'Student') {
+    return (
+      <StudentPage />
+    )
+  }
+
+  return <ErrorPage />
 }
 
 export default App

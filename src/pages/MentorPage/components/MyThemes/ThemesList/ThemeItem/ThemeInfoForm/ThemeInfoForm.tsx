@@ -45,7 +45,7 @@ const ThemeInfoForm: React.FC<Props> = (props) => {
         }
     }
 
-    const options = new Array(11).fill('1').map((_, i) => i as number)
+    const options = new Array(11).fill(1).map((_, i) => i)
     if (props.theme?.difficulty) {
         options[0] = props.theme.difficulty
     } else {
@@ -69,7 +69,7 @@ const ThemeInfoForm: React.FC<Props> = (props) => {
                     validationF={validateThemeDesctiption}
                     startValue={props.theme?.description}/>
                 <Form.SelectField
-                    placeholder='Выберите сложность...'
+                    placeholder='Выберите сложность. 1 — очень легко, 10 — очень сложно'
                     name='difficulty'
                     showName='Сложность'
                     options={options}/>

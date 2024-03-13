@@ -13,7 +13,7 @@ const TeamNTheme: React.FC<Props> = ({ team, onClick }) => {
             <div className={styles.team__students + ' ' + (onClick ? styles.team__students_clickable : '')} onClick={onClick}>
                 {team.students.map(s => <span key={s.record_id}>{shortName(s.student)}</span>)}
             </div>
-            <span>«{team.theme.name}»</span>
+            <span>{team.theme ? `«${team.theme.name}»` : ''}</span>
         </div>
     );
 };

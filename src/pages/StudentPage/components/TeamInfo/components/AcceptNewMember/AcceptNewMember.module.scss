@@ -1,0 +1,27 @@
+@import '/src/colors.scss';
+
+.newMembers {
+    display: flex;
+    flex-direction: column;
+
+    &__reject {
+        background-color: $background-light;
+
+        &:hover {
+            background-color: $background-light-hover;
+        }
+        &:active {
+            background-color: $background-light-active;
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+
+        & > * {
+            flex: 1;
+        }
+    }
+}
