@@ -79,6 +79,7 @@ declare global {
         students: Array<{
             record_id: number
             student: TUserInfo
+            status: studentInTeamStatus
         }>
         theme: TTeamTheme
     }

@@ -17,7 +17,6 @@ import DeleteTeam from './components/DeleteTeam/DeleteTeam'
 const TeamInfo: React.FC = () => {
     const [tasks, settasks] = React.useState<TTask[]>([])
     const [changed, setchanged] = React.useState<number>(0)
-    const [created, setcreated] = React.useState(0)
     
     const team = useSelectStudentTeam()
     const team_id = useSelectStudentTeamId()
@@ -74,7 +73,7 @@ const TeamInfo: React.FC = () => {
                     <TeamNTheme team={team}/>
                     <DeleteTeam increaseChanged={() => setchanged(changed + 1)}/>
                     <AcceptNewMember team={team} increaseChanged={() => setchanged(changed + 1)}/>
-                    <TaskList tasks={tasks} changed={created} setchanged={setcreated} team_id={team.id}/>
+                    <TaskList tasks={tasks} team_id={team.id}/>
                 </>)
                 : team_id !== null
                 ? <SentJoinRequestEl team_id={ team_id } />
